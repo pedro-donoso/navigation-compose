@@ -10,7 +10,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -28,12 +27,12 @@ fun SecondBodyContent(navController: NavController) {
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(text = "Hola Navegación")
-        Button(onClick = { /*TODO*/ }) {
-            Text(text = "Navega")
-
+        Text(text = "He navegado")
+        Button(onClick = {
+        navController.popBackStack()
+        }) {
+            Text(text = "Volver atrás")
         }
-
     }
 }
 
