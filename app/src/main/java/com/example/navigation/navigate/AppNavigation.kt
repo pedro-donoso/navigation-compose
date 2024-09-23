@@ -11,7 +11,7 @@ import com.example.navigation.screens.FirstScreen
 import com.example.navigation.screens.SecondScreen
 
 @Composable
-fun AppNavigation(navController: NavController = rememberNavController()) {
+fun AppNavigation() {
     val navController = rememberNavController()
     NavHost(navController = navController, startDestination = AppScreens.FirstScreen.route) {
         composable(route = AppScreens.FirstScreen.route) {
@@ -23,7 +23,7 @@ fun AppNavigation(navController: NavController = rememberNavController()) {
                 type = NavType.StringType
             })
         ) {
-            SecondScreen(navController, it.arguments?.getString("text"))
+            SecondScreen(navController, it.arguments?.getString("text") ?: "")
         }
     }
 }

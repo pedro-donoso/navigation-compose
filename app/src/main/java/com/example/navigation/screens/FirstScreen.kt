@@ -1,6 +1,5 @@
 package com.example.navigation.screens
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -15,6 +14,7 @@ import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
@@ -33,14 +33,7 @@ import com.example.navigation.navigate.AppScreens
 @Composable
 fun FirstScreen(navController: NavController) {
     TopAppBar(
-        title = { Text(text = "First Screen") },
-        navigationIcon = {
-            Icon(imageVector = Icons.Default.ArrowBack,
-                contentDescription = "Back",
-                modifier = Modifier.clickable {
-                    navController.popBackStack()
-                })
-        }
+        title = { Text(text = "First Screen") }
     )
 
     Column(
@@ -50,7 +43,7 @@ fun FirstScreen(navController: NavController) {
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(text = "Hola navegación")
+        Text(text = "Hola navegación", style = MaterialTheme.typography.headlineMedium)
         Spacer(modifier = Modifier.height(16.dp))
         Button(
             onClick = {
@@ -62,7 +55,7 @@ fun FirstScreen(navController: NavController) {
                 .padding(horizontal = 16.dp, vertical = 8.dp),
             contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp)
         ) {
-            Text(text = "Navega")
+            Text(text = "Navegar", style = MaterialTheme.typography.bodyMedium)
         }
     }
 }
@@ -78,7 +71,11 @@ fun AppNavigation() {
             arguments = listOf(navArgument(name = "text") {
                 type = NavType.StringType
             })) {
-            SecondScreen(navController, it.arguments?.getString("text"))
+            it.arguments?.getString("text")?.let { text ->
+                SecondScreen(navController, text)
+            } ?: run {
+                Text(text = "No se proporcionó parámetro")
+            }
         }
     }
 }

@@ -10,11 +10,10 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
-
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
-
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
@@ -30,13 +29,6 @@ import androidx.navigation.NavController
 fun SecondScreen(navController: NavController, text: String?) {
     Scaffold(topBar = {
         TopAppBar(
-            navigationIcon = {
-                Icon(imageVector = Icons.Default.ArrowBack,
-                    contentDescription = "Back",
-                    modifier = Modifier.clickable {
-                        navController.popBackStack()
-                    })
-            },
             title = { Text(text = "SecondScreen") }
         )
     }) {
@@ -53,10 +45,11 @@ fun SecondBodyContent(navController: NavController, text: String?) {
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(text = "He navegado")
+        Text(text = "He navegado", style = MaterialTheme.typography.headlineMedium)
         text?.let {
-            Text(text = it)
+            Text(text = it, style = MaterialTheme.typography.bodyMedium)
         }
+        Spacer(modifier = Modifier.height(16.dp))
         Button(onClick = {
             navController.popBackStack()
         }) {
