@@ -11,28 +11,27 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
-import com.example.navigation.navigate.AppScreens
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun FirstScreen(navController: NavController) {
+fun SecondScreen(navController: NavController) {
     Scaffold {
-        BodyContent(navController)
+        SecondBodyContent(navController)
     }
 }
 
 @Composable
-fun BodyContent(navController: NavController) {
+fun SecondBodyContent(navController: NavController) {
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(text = "Hola navegación")
+        Text(text = "He navegado")
         Button(onClick = {
-            navController.navigate(route = AppScreens.SecondScreen.route)
+        navController.popBackStack()
         }) {
-            Text(text = "Navega")
+            Text(text = "Volver atrás")
         }
     }
 }
