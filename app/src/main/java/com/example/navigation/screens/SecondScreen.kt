@@ -11,17 +11,18 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavController
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun SecondScreen() {
+fun SecondScreen(navController: NavController) {
     Scaffold {
-        SecondBodyContent()
+        SecondBodyContent(navController)
     }
 }
 
 @Composable
-fun SecondBodyContent() {
+fun SecondBodyContent(navController: NavController) {
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
@@ -36,8 +37,4 @@ fun SecondBodyContent() {
     }
 }
 
-@Preview(showBackground = true)
-@Composable
-fun SecondDefaultPreview() {
-    SecondScreen()
-}
+
