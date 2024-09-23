@@ -9,7 +9,6 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.navigation.navigate.AppNavigation
-import com.example.navigation.screens.FirstScreen
 import com.example.navigation.ui.theme.NavigationTheme
 
 class MainActivity : ComponentActivity() {
@@ -32,6 +31,10 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun DefaultPreview() {
     NavigationTheme {
-        AppNavigation()
+        Surface(
+            color = MaterialTheme.colorScheme.background
+        ) {
+            AppNavigation()
+        }
     }
 }
