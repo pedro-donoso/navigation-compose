@@ -4,10 +4,12 @@ import android.annotation.SuppressLint
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.Button
@@ -45,15 +47,24 @@ fun SecondBodyContent(navController: NavController, text: String?) {
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(text = "He navegado", style = MaterialTheme.typography.headlineMedium)
+        Text(text = "He navegado", style = MaterialTheme.typography.titleLarge)
+
+        Spacer(modifier = Modifier.height(16.dp))
+
         text?.let {
-            Text(text = it, style = MaterialTheme.typography.bodyMedium)
+            Text(text = it, style = MaterialTheme.typography.titleLarge)
         }
         Spacer(modifier = Modifier.height(16.dp))
-        Button(onClick = {
+        Button(
+            modifier = Modifier
+                .width(200.dp)
+                .height(60.dp)
+                .padding(horizontal = 8.dp, vertical = 8.dp),
+            contentPadding = PaddingValues(horizontal = 16.dp, vertical = 4.dp),
+            onClick = {
             navController.popBackStack()
         }) {
-            Text(text = "Volver atrás")
+            Text(text = "Regresar", style = MaterialTheme.typography.headlineMedium)
         }
     }
 }
