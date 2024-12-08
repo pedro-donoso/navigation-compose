@@ -1,9 +1,8 @@
 package com.example.navigation.screens
 
-import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -16,6 +15,7 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.navigation.navigate.AppScreens
@@ -27,27 +27,40 @@ fun FirstScreen(navController: NavController) {
         title = { Text(text = "First Screen") }
     )
 
-    Column(
+    Box(
         modifier = Modifier
             .fillMaxSize()
-            .padding(horizontal = 16.dp, vertical = 24.dp),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
+            .padding(horizontal = 16.dp, vertical = 24.dp)
     ) {
-        Text(text = "Bienvenidos", style = MaterialTheme.typography.titleLarge)
-        Spacer(modifier = Modifier.height(16.dp))
+        // Texto centrado en la parte superior
+        Column(
+            modifier = Modifier
+                .align(Alignment.TopCenter)
+                .padding(top = 16.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Text(text = "Bienvenidos", style = MaterialTheme.typography.titleLarge)
+        }
+
+        // Botón al borde inferior sin bordes redondeados
         Button(
             onClick = {
                 navController.navigate(route = AppScreens.SecondScreen.route + "/-> Este es un parámetro")
             },
             modifier = Modifier
-                .width(200.dp)
+                .align(Alignment.BottomStart)
+                .width(140.dp)
                 .height(60.dp)
-                .padding(horizontal = 8.dp, vertical = 8.dp),
-            contentPadding = PaddingValues(horizontal = 16.dp, vertical = 4.dp)
+                .padding(bottom = 16.dp),
+            contentPadding = PaddingValues(horizontal = 16.dp, vertical = 4.dp),
+            shape = RectangleShape // Sin bordes redondeados
         ) {
-            Text(text = "Navegar", style = MaterialTheme.typography.headlineMedium)
+            Text(text = "Navegar", style = MaterialTheme.typography.headlineSmall)
         }
     }
 }
+
+
+
+
 
